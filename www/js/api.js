@@ -260,6 +260,7 @@
       if (startOf(probe) <= new Date()) throw fail(422, 'This time has already passed.', 'start_time');
       if (mode !== 'Face-to-face' && mode !== 'Online') throw fail(422, 'Pick a mode.', 'mode');
       if (!venue) throw fail(422, 'Add a room or meeting link.', 'venue_or_link');
+      if (venue.length > 150) throw fail(422, 'Room or link is too long (max 150 characters).', 'venue_or_link');
       var clash = db.Consultation.some(function (c) {
         return c.adviser_id === me.user.adviser_id && c.consult_date === date && c.status !== 'Cancelled' &&
           start < c.end_time && end > c.start_time;

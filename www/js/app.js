@@ -955,7 +955,7 @@
           '<button type="button" role="radio" aria-checked="true" data-mode="Face-to-face">Face-to-face</button>' +
           '<button type="button" role="radio" aria-checked="false" data-mode="Online">Online</button></div></div>' +
         '<div class="field"><label for="f-venue">Venue or link</label>' +
-          '<input id="f-venue" class="input" type="text" autocomplete="off" value="' + esc(u.office) + '" placeholder="Room or meeting link" aria-describedby="e-venue">' +
+          '<input id="f-venue" class="input" type="text" maxlength="150" autocomplete="off" value="' + esc(u.office) + '" placeholder="Room or meeting link" aria-describedby="e-venue">' +
           '<div id="e-venue" class="field-error" hidden></div></div>' +
         '<div id="net" class="mt-16" hidden>' + notice('Connect to the internet to post.') + '</div>' +
         '<button type="submit" class="btn btn-primary mt-24" id="post-btn">Post slot</button>' +
@@ -995,6 +995,7 @@
       if (v.end_time <= v.start_time) return ['end_time', 'End time must be later than start time.'];
       if (startOf(v) <= now) return ['start_time', 'This time has already passed.'];
       if (!v.venue_or_link.trim()) return ['venue_or_link', 'Add a room or meeting link.'];
+      if (v.venue_or_link.trim().length > 150) return ['venue_or_link', 'Room or link is too long (max 150 characters).'];
       return null;
     }
 

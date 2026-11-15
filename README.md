@@ -112,3 +112,5 @@ To try it in a desktop browser, serve the `www/` folder (for example `npx http-s
 ## Sample data
 
 All data is sample data stored on the phone, and the API is a mock service; nothing is sent to a server. The slots are created the first time the app opens, with dates counted from that day. To start over, clear the app's storage (Settings → Apps → AdviSlot → Storage → Clear storage).
+
+Because there is no real server, each phone keeps its own copy of the data: a booking made on one phone doesn't appear on another. To try the double-booking check (TC-06), open the web build in two browser tabs; they share the same storage.
